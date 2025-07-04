@@ -7,6 +7,7 @@ import numpy as np
 from datetime import datetime
 from collections import deque, defaultdict
 import time
+import streamlit.components.v1 as components
 
 # --- Animated and Modern CSS ---
 st.markdown("""
@@ -130,7 +131,7 @@ else:
     video_path = "sample.mp4"
 
 LOG_FILE = "abnormal_activity_log.txt"
-SOUND_FILE = "alert.mp3"
+SOUND_FILE = "https://www.soundjay.com/phone/sounds/telephone-ring-03b.mp3"
 
 def log_alert(activity):
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -139,7 +140,12 @@ def log_alert(activity):
 
 def play_alert_sound():
     try:
-        st.audio(SOUND_FILE)
+        components.html(f"""
+        <script>
+            var audio = new Audio("{SOUND_FILE}");
+            audio.play();
+        </script>
+    """, height=0)
     except Exception as e:
         st.warning("Sound error: " + str(e))
 
@@ -165,7 +171,7 @@ if 'heatmap' not in st.session_state:
     st.session_state['heatmap'] = None
 
 # --- Load model ---
-model = YOLO("best.pt")
+model = YOLO("best (1).pt")
 class_names = model.names
 
 # --- Detection logic ---

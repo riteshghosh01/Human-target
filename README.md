@@ -305,5 +305,14 @@ contrast variation, rotation and scaling and random cropping.
 ![image](https://github.com/user-attachments/assets/ca5afc49-5c60-438b-bedb-e4790ebe5e44)
 
 
+o Export Format:
+
+The dataset was exported in YOLOv8-compatible format, including:
+- Structured folder hierarchy (train/val/test)
+- Corresponding .txt annotation files
+- A data.yaml file containing class names and dataset paths.
+
+
+![image](https://github.com/user-attachments/assets/a5e778e4-63e7-473a-872f-61a405c9026e)
 
 

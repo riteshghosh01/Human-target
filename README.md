@@ -54,10 +54,12 @@ The detailed goals are outlined below:
 that abnormal activities are detected and flagged with minimal delay. This
 is critical for time-sensitive applications such as live surveillance or
 emergency response.
+
  Hardware Optimization: By utilizing YOLOv8&#39;s lightweight architecture,
 the system will be designed to run efficiently on standard hardware,
 including edge devices like Raspberry Pi, GPUs, or CPUs, without
 compromising on speed or accuracy.
+
  High Throughput: The system will process multiple input streams (e.g.,
 from CCTV cameras or drones) simultaneously, providing scalability for
 large-scale deployments.

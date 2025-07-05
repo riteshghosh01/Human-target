@@ -483,4 +483,64 @@ due to overlap and class imbalance.
 
 
 
+ Confusion Matrix Summary:
 
+The confusion matrix illustrates that classes like standing, walking, and
+sitting were detected with high accuracy (e.g., 157 true positives for
+standing), while some misclassifications occurred among running, armed,
+and fighting, which often overlap in appearance and context.
+
+
+
+![image](https://github.com/user-attachments/assets/c25025f0-cb63-4037-825c-53017cefd1a1)
+
+
+ Real-Time Performance
+
+The detection system consistently ran at 30–40 frames per second (FPS)
+on GPU, confirming real-time compatibility for surveillance applications.
+
+ Visual Output and Alerts
+
+Bounding boxes with class labels were successfully rendered on video
+frames. Detected abnormal actions triggered real-time audio alerts and
+were logged with timestamps and labels. Annotated videos and saved
+abnormal frames were generated for later review.
+
+ Heatmap and Movement Zones
+
+The system produced motion heatmaps that visually highlighted areas of
+frequent or abnormal activity, assisting in zone-based surveillance and
+activity clustering.
+
+
+![image](https://github.com/user-attachments/assets/ff8f6759-1f1f-43d5-a46e-05a5141e3b28)
+
+
+The model successfully detected actions like running and sudden stopping, with
+bounding boxes and labels for abnormal actions, offering reliable performance
+for surveillance systems.
+
+
+![image](https://github.com/user-attachments/assets/5967b4df-b0b5-47e4-a551-9885b56a8f26)
+
+
+# Conclusion
+
+This venture presents an successful approach to anomalous movement
+discovery by joining the capabilities of YOLOv8 with real-time movement
+following and relevant investigation. The framework is planned to be both
+effective and interpretable, requiring negligible explained information
+whereas keeping up tall location exactness. By leveraging lightweight
+profound learning models and commonsense computer vision methods, the
+arrangement addresses real-world challenges in observation, particularly in
+high-density or energetic environments.
+
+Through the combination of question discovery and behavioral examination,
+the framework gives solid, real-time recognizable proof of suspicious
+exercises, such as sudden developments, gather clustering, or potential
+dangers. This not as it were upgrades situational mindfulness but moreover
+makes a difference diminish reliance on manual observing. Once completely
+executed, the framework can altogether move forward reaction times and
+decision-making in security-sensitive applications such as open security,
+healthcare, and mechanical checking.

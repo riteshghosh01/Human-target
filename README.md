@@ -30,7 +30,7 @@ making it suitable for a multitude of practical implementations.
 ![image](https://github.com/user-attachments/assets/fc45b1b5-2837-4770-ac92-3d4da0efa308)
 
 
-# Scope of the project:
+# Scope of the Project:
 
 The scope of this project encompasses the design, development, and deployment
 of a real-time abnormal activity detection system using a custom-trained

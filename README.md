@@ -6,7 +6,7 @@ automation, boost safety, and create new user experiences by identifying and
 classifying human activities including walking, running, or standing.
 
 
-Human action detection&#39;s complexity results from elements including variations
+Human action detection's complexity results from elements including variations
 in body posture, occlusions, lighting conditions, and different camera angles.
 Building a strong and precise detection system calls for sophisticated algorithms
 able to handle such difficulties in actual situations.
@@ -55,7 +55,7 @@ that abnormal activities are detected and flagged with minimal delay. This
 is critical for time-sensitive applications such as live surveillance or
 emergency response.
 
- Hardware Optimization: By utilizing YOLOv8&#39;s lightweight architecture,
+ Hardware Optimization: By utilizing YOLOv8's lightweight architecture,
 the system will be designed to run efficiently on standard hardware,
 including edge devices like Raspberry Pi, GPUs, or CPUs, without
 compromising on speed or accuracy.
@@ -112,7 +112,7 @@ needing re-training.
 4. Explainable Output and Visual Feedback:
 
 Transparency is key in surveillance systems. This project includes
-interpretability tools that make the system&#39;s decisions clear and user-friendly.
+interpretability tools that make the system's decisions clear and user-friendly.
 
  Bounding Boxes and Labels: Every detected individual is enclosed in a
 box with activity labels (e.g., “walking”, “fighting”) and a confidence score.
@@ -223,7 +223,7 @@ activity detection:
 
 The system provides real-time visual feedback by identifying individuals in the
 video frames and markinguthem with bounding boxes. Each detected action is
-labeled with a corresponding tag like &quot;Running&quot;, &quot;Fighting&quot;, or &quot;Robbery&quot;, and
+labeled with a corresponding tag like "Running", "Fighting", or "Robbery", and
 each detection includes a confidence score indicating the system’s certainty. This
 helps operators interpret situations instantly and with greater accuracy.
 
@@ -314,5 +314,173 @@ The dataset was exported in YOLOv8-compatible format, including:
 
 
 ![image](https://github.com/user-attachments/assets/a5e778e4-63e7-473a-872f-61a405c9026e)
+
+
+Model Training Using YOLOv8:
+
+Model training was conducted using the YOLOv8s (small) model in Google Colab
+with GPU support, leveraging the Ultralytics framework.
+
+o The training spanned 50 to 100 epochs, with a batch size of 16–32.
+
+o Key performance metrics such as precision, recall, and mean Average
+Precision (mAP@0.5 and mAP@0.5:0.95) were used to monitor progress.
+
+o The model was validated using a separate split of the dataset, and the best-
+performing weights were saved as best.pt for use in real-time detection.
+
+
+![image](https://github.com/user-attachments/assets/c3eb5d53-0f1f-438d-a8ef-c6f07df54fb4)
+
+
+Contextual Preprocessing and Background Subtraction:
+
+To enable behavior-aware detection, the system processes environmental
+context using background subtraction:
+
+o MOG2 (Mixture of Gaussians) is applied to identify moving foreground
+objects.
+
+o Foreground masks are refined using morphological operations to reduce
+noise.
+
+o Crowd density is calculated by comparing motion pixels to total pixels. If
+density exceeds pre-set thresholds (e.g.>20% during standing), the
+activity is flagged as potentially abnormal.
+
+ Abnormal Motion and Temporal Analysis:
+
+YOLOv8 identifies actions frame-by-frame, while OpenCV-based analysis
+captures behavioral anomalies across time:
+
+o Sudden movement detection tracks the displacement of bounding box
+centers across consecutive frames. Large pixel shifts are interpreted as
+abrupt or suspicious motion.
+
+o Temporal standing analysis monitors individuals who remain stationary
+beyond a defined duration (e.g., more than 10 seconds), flagging them as
+potentially loitering or unwell.
+
+These methods enrich object detection with time-aware behavior context,
+improving abnormality detection without needing complex LSTM or 3D CNN
+models.
+
+ Group Proximity and Interaction Analysis:
+
+To detect potentially suspicious gatherings or social interactions:
+o The system calculates pairwise distances between people using bounding
+box center coordinates.
+
+o If three or more individuals cluster within a fixed radius (e.g., 100 pixels),
+the system marks it as a group event.
+
+o Group proximity in sensitive areas (like near a bank counter or entrance) is
+treated as an anomaly.
+
+ Alerting, Logging, and Visual Outputs:
+
+To ensure usability and incident traceability, several output mechanisms are
+implemented:
+
+o Auditory Alerts:
+
+Abnormal actions like robbery, fighting, or armed threats trigger unique
+beep tones using the winsound.Beep() function.
+
+o Logging:
+
+All anomalies are recorded in a .txt file with timestamp and activity type.
+
+o Frame Capture:
+
+Abnormal frames are saved automatically to a designated folder
+(/abnormal_frames/) using filenames that include timestamps and action
+labels.
+
+o Heatmap Generation:
+
+Motion masks accumulated over time are converted into thermal-style
+activity heatmaps using OpenCV's COLORMAP_JET, highlighting frequent
+zones of movement or activity.
+
+o User-Friendly Dashboard:​
+
+A dashboard interface may be developed to display live video feeds
+alongside real-time analytics, providing operators with a centralized view
+of activities.
+
+
+![image](https://github.com/user-attachments/assets/3292d7bd-e877-487f-bff9-3d8675622d73)
+
+
+# Key Advantages of the Methodology
+
+1. Real-Time Performance:
+
+The combination of the YOLOv8s model with OpenCV-based tracking
+allows the system to detect and analyze human activities instantly. This
+makes it highly effective for live surveillance scenarios where quick
+response is essential, such as detecting fights, robberies, or other
+suspicious behavior.
+
+2. Interpretability and Transparency:
+Each detection is visually marked with bounding boxes and action labels,
+while all abnormal activities are logged with timestamps. This clear and
+interpretable output builds trust with end-users and facilitates accurate
+post-event analysis.
+
+3. Robustness Across Environments:
+
+The methodology is designed to handle real-world challenges such as
+variable lighting, complex backgrounds, and dynamic crowd densities.
+Background subtraction, noise reduction, and contextual analysis help
+maintain consistent performance even in difficult conditions.
+
+4. Scalability for Large Deployments:
+
+The system supports multiple video streams and modular integration,
+making it suitable for both small installations (e.g., offices or clinics) and
+larger infrastructures like airports, malls, or city-wide surveillance
+networks.
+
+5. Resource-Efficient Implementation:
+
+By using a lightweight version of YOLOv8 and optimizing processes with
+OpenCV, the system operates efficiently on standard hardware and even
+edge devices. This minimizes computational load and makes the solution
+cost-effective for a wide range of applications.
+
+# Result
+
+The YOLOv8s-based abnormal activity detection system was evaluated on a
+custom dataset comprising various human actions labeled via Roboflow. The
+system's performance was assessed using precision, recall, F1-score, and
+confusion matrix data, with visual output provided through confidence-based
+curves.
+
+ Model Accuracy
+
+The system achieved a detection accuracy of approximately 72.6%,
+correctly identifying both normal and abnormal human actions across
+multiple classes.
+
+ Precision-Recall-F1 Performance:
+
+The model demonstrated strong overall performance with a maximum
+precision of 1.00, recall of 0.77, and an F1-score of 0.62 at a confidence
+threshold of 0.585. Classes such as robbery, jumping, and sitting showed
+particularly high scores across all metrics, while slightly lower recall was
+observed in more visually complex classes like armed and fighting, likely
+due to overlap and class imbalance.
+
+
+
+![image](https://github.com/user-attachments/assets/5b2c33cf-bb32-42ee-981b-ad0bee74ec5f)
+
+
+
+![image](https://github.com/user-attachments/assets/ee4c8a25-15b8-4bcc-8a6b-2a5c2524c412)
+
+
 
 

@@ -182,6 +182,7 @@ if start_button:
     heatmap = None
     last_alert_time = 0
     ALERT_COOLDOWN = 2  # seconds
+    no_motion_alert_shown = False  # Add this line
 
     while cap.isOpened():
         ret, frame = cap.read()
@@ -232,7 +233,9 @@ if start_button:
                         # Optionally reset heatmap for next event
                         heatmap = np.zeros_like(heatmap)
                     else:
-                        st.info("No motion detected for heatmap.")
+                        if not no_motion_alert_shown:
+                            st.info("No motion detected for heatmap.")
+                            no_motion_alert_shown = True
 
         overall_status = "ABNORMAL" if abnormal_activities else "NORMAL"
         status_class = "status-abnormal" if overall_status == "ABNORMAL" else "status-normal"
@@ -312,12 +315,17 @@ if show_log:
 if show_screenshots:
     import glob
     import PIL.Image
+    import os
 
     screenshot_files = sorted(glob.glob("abnormal_screenshots/*.jpg"))
+
     if screenshot_files:
         st.markdown("<div class='card'><b>Abnormal Activity Screenshots</b></div>", unsafe_allow_html=True)
         for img_path in screenshot_files:
-            st.image(PIL.Image.open(img_path), caption=os.path.basename(img_path), use_column_width=True)
+            with PIL.Image.open(img_path) as img:
+                st.image(img, caption=os.path.basename(img_path), use_column_width=True)
+            os.remove(img_path)  # Automatically delete after showing
+        st.info("All shown screenshots have been deleted automatically.")
     else:
         st.info("No abnormal screenshots found yet.")
 

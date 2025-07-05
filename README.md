@@ -175,3 +175,40 @@ o Industrial Environments: Detecting safety breaches, accidents, or
 restricted access in hazardous areas.
 o Education and Retail: Identifying crowding, aggression, or
 shoplifting in schools, malls, and shops.
+
+
+Input and Output:
+
+Input:
+
+The input to the abnormal activity detection system primarily consists of video
+data obtained from live surveillance feeds or pre-recorded footage. These videos
+may come from real-world environments such as public spaces, hospitals,
+offices, or educational institutions. The goalhis to detect and classify human
+actions within each frame in real time.
+
+Video Collection:
+
+ Videos were collected from simulated environments or sourced from
+surveillance systems.
+
+ Scenarios included publiciplaces, indoor rooms, streets, and hallways
+under varied lighting and density conditions.
+
+Custom Datasets:
+
+To train the detection model, a custom dataset was developed using Roboflow, a
+platform that simplifies the process of annotating and managing visual data.
+
+ Video frames were extracted and manually labeled with specific action
+classesglike walking, running, standing, fighting, sitting, jumping, lying
+down, robbery, and armed.
+
+ Once labeled, theldataset was exported in YOLO format and used to train
+the YOLOv8s model in Google Colab.
+
+ Roboflow also provided automated data augmentation to improve model
+accuracy across varied conditions.
+
+
+![image](https://github.com/user-attachments/assets/b7af9dc3-1181-41d4-b7d3-93acd693f438)

@@ -269,6 +269,40 @@ correctly detect abnormal actions, which can be helpful for evaluating and fine-
 tuning the system.
 
 
+# Methodology Used
+
+The proposed system leverages a hybrid approach combining the object
+detection strength of YOLOv8 with contextual and motion-based analysis using
+OpenCV. The methodology is designed for real-time abnormal activity
+detection and operates effectively on both live surveillance feeds and recorded
+video streams. The system’s workflow consists of the following key components:
+
+ Dataset Preparation and Preprocessing:
+
+To train the system effectively for abnormal activity detection, a custom dataset
+was created using Roboflow, a platform designed for annotating and managing
+image datasets. Video footage was converted into frames, capturing both normal
+and abnormal human activities.
+
+o Classes:
+Each frame was annotated with one of nine action classes:
+Walking, Standing, Sitting, Running, Fighting, Jumping, Lying Down,
+Robbery, and Armed.
+
+o Annotation Format:
+
+- Bounding boxes were drawn around each person.
+- Labels were assigned using YOLO annotation format (text files
+containing object class, coordinates, and dimensions).
+
+o Data Augmentation:
+
+To improve model generalizationkand reduce overfitting, Roboflow applied
+several augmentation techniques like Horizontal flipping, brightness and
+contrast variation, rotation and scaling and random cropping.
+
+
+![image](https://github.com/user-attachments/assets/ca5afc49-5c60-438b-bedb-e4790ebe5e44)
 
 
 

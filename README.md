@@ -25,3 +25,7 @@ in object detection for human action recognition and lay the groundwork for
 further development on more complicated actions and larger datasets. The
 system is intended to have lightweight components for real-time processing,
 making it suitable for a multitude of practical implementations.
+
+
+![image](https://github.com/user-attachments/assets/2ff56b6d-7e78-480e-858d-24880a7aad72)
+

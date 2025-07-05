@@ -212,3 +212,64 @@ accuracy across varied conditions.
 
 
 ![image](https://github.com/user-attachments/assets/b7af9dc3-1181-41d4-b7d3-93acd693f438)
+
+
+Output:
+
+The output of the system will consist of multiple actionable results for abnormal
+activity detection:
+
+ Visual Detection and Annotation :
+
+The system provides real-time visual feedback by identifying individuals in the
+video frames and markinguthem with bounding boxes. Each detected action is
+labeled with a corresponding tag like &quot;Running&quot;, &quot;Fighting&quot;, or &quot;Robbery&quot;, and
+each detection includes a confidence score indicating the system’s certainty. This
+helps operators interpret situations instantly and with greater accuracy.
+
+ Anomaly Logging and Metadata:
+
+In addition to visual outputs, the system maintains a structured log file that
+records details such as the timestamp, detected action, frame number, and the
+duration of the event. The log may alsojinclude contextual information like
+estimated crowd density or predefined thresholds for specific areas, aiding
+deeper analysis and better scene understanding.
+
+
+![image](https://github.com/user-attachments/assets/5a99cb1c-69ef-45be-a205-564274321f4c)
+
+
+
+ Saved Annotated Frames:
+
+Any frame in which an abnormal activity is detected is automatically saved in a
+designated folder. Each file is timestamped and labeled with the type of anomaly,
+making it easy to locate and review incidents later. The filenames follow a clear
+format (e.g., fighting_12_05_2025_10_33_21.jpg) for traceability.
+
+ Abnormality Heatmap:
+
+A heatmap is created based on areas with high motion or recurring abnormal
+activities. This visual tool helps identify hotspots or zones that require increased
+attention, and it can also guide future decisions about camera placement or
+crowd control measures.
+
+ Real-Time Audio Alerts:
+
+For high-risk actions like fights, armed threats, or robbery, the system triggers
+distinct audio alerts. Each type of anomaly can have a unique tone, and a built-in
+cooldown mechanism prevents the system from issuing repeated alerts for the
+same event in quick succession.
+
+ Performance Metrics:
+
+In addition to the visual outputs, the system will log performance metrics such
+as precision, recall, F1-score, and accuracy based on the model’s ability to
+correctly detect abnormal actions, which can be helpful for evaluating and fine-
+tuning the system.
+
+
+
+
+
+

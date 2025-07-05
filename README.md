@@ -27,5 +27,6 @@ system is intended to have lightweight components for real-time processing,
 making it suitable for a multitude of practical implementations.
 
 
-![image](https://github.com/user-attachments/assets/2ff56b6d-7e78-480e-858d-24880a7aad72)
+![image](https://github.com/user-attachments/assets/fc45b1b5-2837-4770-ac92-3d4da0efa308)
+
 

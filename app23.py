@@ -119,7 +119,7 @@ with col1:
     show_screenshots = st.button("🖼️ Show Abnormal Screenshots")
 
 frame_placeholder = st.empty()
-status_placeholder = st.empty()
+status_placeholder = st.empty()  # Add this for the status badge
 alert_placeholder = st.empty()
 
 # --- Video path logic ---
@@ -243,9 +243,12 @@ if start_button:
 
         # --- Streamlit image display with fade-in ---
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        frame_placeholder.markdown(
+        # Show status badge in its own placeholder
+        status_placeholder.markdown(
             f"<div class='card fadein'>{status_html}</div>", unsafe_allow_html=True
         )
+
+        # Show video frame in its own placeholder
         frame_placeholder.image(frame_rgb, channels="RGB", use_container_width=True)
 
         # Only play sound and show alert if a new abnormal activity is detected (with cooldown)

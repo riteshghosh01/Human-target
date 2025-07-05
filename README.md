@@ -1,4 +1,4 @@
-#   Robust Human Target Detection
+#   Robust Human Target Detection  #
 A fast expanding area of computer vision, human action detection has uses in
 many different sectors including video surveillance, sports analysis, healthcare
 monitoring, and human-computer interaction. These systems can increase

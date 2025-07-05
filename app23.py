@@ -171,7 +171,7 @@ if 'heatmap' not in st.session_state:
     st.session_state['heatmap'] = None
 
 # --- Load model ---
-model = YOLO("best (1).pt")
+model = YOLO("best.pt")
 class_names = model.names
 
 # --- Detection logic ---
